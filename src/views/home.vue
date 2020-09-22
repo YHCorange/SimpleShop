@@ -1,8 +1,9 @@
 <template>
 	<div>
+		<div class="notice" v-if="notice" v-html="notice"></div>
 		<el-carousel :height="bannerHeight+'px'" trigger="click">
 			<el-carousel-item v-for="item in bannerData" :key="item.Id">
-				<a :href="item.Link" target="_blank"><img class="banner-img" ref="bannerHeight" :src="item.Image"></a>
+				<a :href="item.Link" target="_blank"><img class="banner-img" ref="bannerHeight" :src="'http://47.52.42.54:90'+item.Image"></a>
 			</el-carousel-item>
 		</el-carousel>
 		<el-row :gutter="30">
@@ -21,7 +22,7 @@
 			</el-col>
 		</el-row>
 		<div class="txt-c mt20">
-			<el-button type="warning" @click="goodsAll">View more goods</el-button>
+			<el-button type="warning" @click="goodsAll">View more products</el-button>
 		</div>
 	</div>
 </template>
@@ -29,7 +30,8 @@
 <script>
 	import {
 		bannerList,
-		goodsList
+		goodsList,
+		noticeView
 	} from '@/api/api'
 
 	export default {
@@ -38,10 +40,12 @@
 			return {
 				bannerHeight: '',
 				bannerData: [],
-				goodsData: []
+				goodsData: [],
+				notice: ''
 			}
 		},
 		created() {
+			this.getNoticeData()
 			this.getBannerData()
 			this.getGoodsData()
 		},
@@ -58,6 +62,15 @@
 				this.$nextTick(() => {
 					this.bannerHeight = document.body.clientWidth * 1 / 4
 				})
+			},
+
+			// 获取公告数据
+			getNoticeData() {
+				let _this = this
+				let params = {}
+				noticeView(params).then(res => {
+					_this.notice = res.Entity[0].Message
+				}).catch((e) => {})
 			},
 
 			//获取banner
