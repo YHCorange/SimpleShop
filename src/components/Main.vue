@@ -69,7 +69,8 @@
 				localStorage.setItem('cId', cId)
 				localStorage.setItem('cName', cName)
 
-				this.$router.go(0)
+				this.$router.push('/home')
+				window.location.reload()
 
 			},
 
