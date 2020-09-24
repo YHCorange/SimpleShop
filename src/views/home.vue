@@ -3,7 +3,7 @@
 		<div class="notice" v-if="notice">
 			<div class="animate" v-html="notice"></div>
 		</div>
-		<el-carousel :height="bannerHeight+'px'" trigger="click" v-if="bannerData.length>0">
+		<el-carousel type="card" :height="bannerHeight+'px'" trigger="click" v-if="bannerData.length>0">
 			<el-carousel-item v-for="item in bannerData" :key="item.Id">
 				<a :href="item.Link" target="_blank"><img class="banner-img" ref="bannerHeight" :src="item.Image"></a>
 			</el-carousel-item>
