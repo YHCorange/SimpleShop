@@ -35,8 +35,8 @@
 							<div class="goods-title">{{item.ProductName}}</div>
 							<div class="goods-dis">{{item.ProductName}}</div>
 							<div class="bottom">
-								<time class="time warning fz20">{{item.Price}} {{item.Currency}}</time>
-								<el-button type="text" class="button ml20">View details</el-button>
+								<time class="time warning fz18">{{item.Price}} {{item.Currency}}</time>
+								<el-button type="text" class="button ml10">View details</el-button>
 							</div>
 						</div>
 					</el-card>
@@ -78,19 +78,12 @@
 					countryId: cId,
 					productTypeId: _this.searchForm.type,
 					Name: _this.searchForm.name,
-					State: 0,
+					State: 1,
 					pageIndex: 1,
 					pageSize: _this.pageSize
 				}
 				goodsList(params).then(res => {
-					let all = res.Entity
-					let data = []
-					for (let x in all) {
-						if (all[x].State == 1) {
-							data.push(all[x])
-						}
-					}
-					_this.goodsData = data
+					_this.goodsData = res.Entity
 				}).catch((e) => {})
 			},
 

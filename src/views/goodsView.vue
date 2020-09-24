@@ -104,7 +104,10 @@
 			//获取联系方式
 			getContactData() {
 				let _this = this
-				let params = {}
+				let cId = localStorage.getItem('cId')
+				let params = {
+					CountryId: cId
+				}
 				contactView(params).then(res => {
 					_this.contact = res.Entity[0].Contact
 				}).catch((e) => {})

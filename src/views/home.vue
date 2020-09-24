@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<div class="notice" v-if="notice" v-html="notice"></div>
-		<el-carousel :height="bannerHeight+'px'" trigger="click">
+		<div class="notice" v-if="notice">
+			<div class="animate" v-html="notice"></div>
+		</div>
+		<el-carousel :height="bannerHeight+'px'" trigger="click" v-if="bannerData.length>0">
 			<el-carousel-item v-for="item in bannerData" :key="item.Id">
 				<a :href="item.Link" target="_blank"><img class="banner-img" ref="bannerHeight" :src="item.Image"></a>
 			</el-carousel-item>
@@ -14,8 +16,8 @@
 						<div class="goods-title">{{item.ProductName}}</div>
 						<div class="goods-dis">{{item.ProductName}}</div>
 						<div class="bottom">
-							<time class="time warning fz20">{{item.Price}} {{item.Currency}}</time>
-							<el-button type="text" class="button ml20">View details</el-button>
+							<time class="time warning fz18">{{item.Price}} {{item.Currency}}</time>
+							<el-button type="text" class="button ml10">View details</el-button>
 						</div>
 					</div>
 				</el-card>
@@ -67,7 +69,10 @@
 			// 获取公告数据
 			getNoticeData() {
 				let _this = this
-				let params = {}
+				let cId = localStorage.getItem('cId')
+				let params = {
+					CountryId: cId
+				}
 				noticeView(params).then(res => {
 					_this.notice = res.Entity[0].Message
 				}).catch((e) => {})
@@ -103,19 +108,12 @@
 					countryId: cId,
 					productTypeId: 0,
 					Name: '',
-					State: 0,
+					State: 1,
 					pageIndex: 1,
 					pageSize: 16
 				}
 				goodsList(params).then(res => {
-					let all = res.Entity
-					let data = []
-					for (let x in all) {
-						if (all[x].State == 1) {
-							data.push(all[x])
-						}
-					}
-					_this.goodsData = data
+					_this.goodsData = res.Entity
 				}).catch((e) => {})
 			},
 
@@ -139,3 +137,28 @@
 		}
 	}
 </script>
+
+<style>
+	.notice {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.animate {
+		display: inline-block;
+		white-space: nowrap;
+		animation: 100s wordsLoop linear infinite normal;
+	}
+
+	@keyframes wordsLoop {
+		0% {
+			transform: translateX(200px);
+			-webkit-transform: translateX(200px);
+		}
+
+		100% {
+			transform: translateX(-100%);
+			-webkit-transform: translateX(-100%);
+		}
+	}
+</style>
