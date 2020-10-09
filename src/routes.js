@@ -24,29 +24,29 @@ export default new Router({
 			name: 'main',
 			component: resolve => require(['./components/Main.vue'], resolve),
 			children: [{
-				path: '/home',
-				name: 'home',
-				component: resolve => require(['./views/home.vue'], resolve),
-				meta: {
-					title: '首页'
+					path: '/home',
+					name: 'home',
+					component: resolve => require(['./views/home.vue'], resolve),
+					meta: {
+						title: '首页'
+					}
+				},
+				{
+					path: '/goods',
+					name: 'goods',
+					component: resolve => require(['./views/goods.vue'], resolve),
+					meta: {
+						title: '商品列表'
+					}
+				},
+				{
+					path: '/goodsView',
+					name: 'goodsView',
+					component: resolve => require(['./views/goodsView.vue'], resolve),
+					meta: {
+						title: '商品详情'
+					}
 				}
-			}, 
-			{
-				path: '/goods',
-				name: 'goods',
-				component: resolve => require(['./views/goods.vue'], resolve),
-				meta: {
-					title: '商品列表'
-				}
-			}, 
-			{
-				path: '/goodsView',
-				name: 'goodsView',
-				component: resolve => require(['./views/goodsView.vue'], resolve),
-				meta: {
-					title: '商品详情'
-				}
-			}
 			]
 		},
 		{

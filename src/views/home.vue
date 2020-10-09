@@ -16,7 +16,7 @@
 						<div class="goods-title">{{item.ProductName}}</div>
 						<div class="goods-dis">{{item.ProductName}}</div>
 						<div class="bottom">
-							<time class="time warning fz18">{{item.Price}} {{item.Currency}}</time>
+							<time class="time warning fz18 text-line-x">{{item.Price}} {{item.Currency}}</time>
 							<el-button type="text" class="button ml10">View details</el-button>
 						</div>
 					</div>

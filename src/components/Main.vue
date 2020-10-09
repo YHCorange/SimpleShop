@@ -1,11 +1,12 @@
 <template>
 	<el-container>
 		<el-header>
-			<el-menu :default-active="onRoutes" background-color="#001529" text-color="#fff" mode="horizontal" unique-opened
-			 router>
-				<el-menu-item @click="$router.push({path: 'home'})">
+			<el-menu :default-active="onRoutes" background-color="#001529" text-color="#fff" active-text-color="#5FB878" mode="horizontal"
+			 unique-opened router>
+				<el-menu-item @click="$router.push({path: 'home'})" style="border: none;">
 					<img class="logImg" src="../assets/image/logo.png" />
 				</el-menu-item>
+				<el-menu-item index="home" style="border: none;">HOME</el-menu-item>
 				<el-dropdown split-button type="warning" class="f-r" style="margin:10px 20px" @command="handleCommand">
 					<span>{{countryName}}</span>
 					<el-dropdown-menu slot="dropdown">

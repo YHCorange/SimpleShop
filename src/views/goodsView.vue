@@ -9,7 +9,7 @@
 			</el-col>
 			<el-col :xs="24" :sm="14">
 				<div class="goodsViewTitle">{{goodsInfo.name}}</div>
-				<div class="goodsViewPrice warning">{{goodsInfo.price}} {{goodsInfo.currency}}</div>
+				<div class="goodsViewPrice warning text-line-x">{{goodsInfo.price}} {{goodsInfo.currency}}</div>
 				<div class="goodsViewDis" v-html="goodsInfo.description"></div>
 				<div class="contact" v-html="contact"></div>
 			</el-col>
