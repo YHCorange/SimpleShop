@@ -49,7 +49,7 @@
 						if (flg > 0) {
 							let countryData = _this.countryData
 							for (let x in countryData) {
-								if (cName == countryData[x].countryName) {
+								if (cName == countryData[x].CountryName) {
 									localStorage.setItem('cId', countryData[x].Id)
 									localStorage.setItem('cName', countryData[x].CounteyShorthand)
 									this.$router.push('/home')
