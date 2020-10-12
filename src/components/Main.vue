@@ -58,7 +58,6 @@
 				}
 				countryList(params).then(res => {
 					_this.countryData = res.Entity
-					_this.getLocalCountry()
 				}).catch((e) => {})
 			},
 
@@ -73,7 +72,7 @@
 				this.$router.push('/home')
 				window.location.reload()
 			}
-			
+
 		}
 	}
 </script>
