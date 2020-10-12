@@ -20,7 +20,7 @@
 				<router-view></router-view>
 			</el-main>
 		</el-container>
-		<el-footer>2020-2030 © Copyright By Amazon-Buy</el-footer>
+		<el-footer>2020-2030 © Copyright By AmzBuy</el-footer>
 	</el-container>
 </template>
 
@@ -34,7 +34,7 @@
 		data() {
 			return {
 				countryData: [],
-				countryName: ''
+				countryName: localStorage.getItem('cName')
 			}
 		},
 		computed: {
@@ -44,7 +44,6 @@
 		},
 
 		created() {
-			this.getLocalCountry()
 			this.getCountryData()
 		},
 
@@ -59,6 +58,7 @@
 				}
 				countryList(params).then(res => {
 					_this.countryData = res.Entity
+					_this.getLocalCountry()
 				}).catch((e) => {})
 			},
 
@@ -72,22 +72,8 @@
 
 				this.$router.push('/home')
 				window.location.reload()
-
-			},
-
-			// 获取本地存储的国家
-			getLocalCountry() {
-				let id = localStorage.getItem('cId')
-				let name = localStorage.getItem('cName')
-				if (id) {
-					this.countryName = name
-				} else {
-					this.countryName = 'US'
-					localStorage.setItem('cId', 1)
-					localStorage.setItem('cName', 'US')
-				}
 			}
-
+			
 		}
 	}
 </script>

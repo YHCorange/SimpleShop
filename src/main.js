@@ -8,18 +8,13 @@ import router from './routes'
 
 Vue.use(ElementUI)
 
-Vue.prototype.$IMGURL = 'http://203.195.212.239:9090' //统一设置页面上图片URL路径入口
-
 router.beforeEach((to, from, next) => {
-	// let userId = sessionStorage.getItem('userId')
-	// if (!userId && to.path !== '/login' && to.path !== '/deals') {
-	// 	next({
-	// 		path: '/login'
-	// 	})
-	// } else {
-	// 	next()
-	// }
-	next()
+	let cId = localStorage.getItem('cId')
+	if (!cId && to.path !== '/loading') {
+		next('/loading')
+	} else {
+		next()
+	}
 })
 
 new Vue({

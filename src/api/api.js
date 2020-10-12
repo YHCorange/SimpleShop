@@ -4,6 +4,8 @@ import {
 	postForm
 } from './http'
 
+export const address = (params) => get('/api/Ip/GetAddress', params) //获取当前位置
+
 export const countryList = (params) => get('/api/Country/GetCountryList', params) //国家列表
 
 export const typeList = (params) => get('/api/ProductType/GetProductTypeList', params) //商品分类列表

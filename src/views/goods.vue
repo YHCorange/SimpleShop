@@ -33,7 +33,7 @@
 						<img class="product-img" :src="item.ProductUrl">
 						<div class="product-card-box">
 							<div class="goods-title">{{item.ProductName}}</div>
-							<div class="goods-dis">{{item.ProductName}}</div>
+							<div class="goods-dis" v-html="item.ProductDescribe"></div>
 							<div class="bottom">
 								<time class="time warning fz18 text-line-x">{{item.Price}} {{item.Currency}}</time>
 								<el-button type="text" class="button ml10">View details</el-button>

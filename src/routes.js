@@ -15,6 +15,11 @@ export default new Router({
 			redirect: '/home'
 		},
 		{
+			path: '/loading',
+			name: 'loading',
+			component: resolve => require(['./components/Loading.vue'], resolve)
+		},
+		{
 			path: '/404',
 			name: '404',
 			component: resolve => require(['./components/404.vue'], resolve)
