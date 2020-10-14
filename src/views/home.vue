@@ -5,9 +5,10 @@
 		</div>
 		<el-row class="top-box">
 			<el-col :span="7">
-				<div class="left-con">After you leave a five-star review, we will refund in full. Ok? Including PP costs. You agree
-					that I will send you keywords and product pictures! However, please do not refund the return! If you do, it will
-					be serious</div>
+				<div class="left-con">After you leave a five-star review, we will refund in full. If you accept this method, please
+					contact me, but please do not return the goods for a refund, the consequences will be very serious! My contact
+					information is in the details interface of any product, and new products will be added to the shelves one by one.
+					Please continue to follow our website!</div>
 			</el-col>
 			<el-col :span="10">
 				<p>&nbsp;</p>
@@ -161,7 +162,7 @@
 		font-size: 20px;
 		color: #FFFFFF;
 		padding: 15px;
-		height: 250px;
+		height: 300px;
 		line-height: 1.8;
 		overflow: hidden;
 		display: flex;
