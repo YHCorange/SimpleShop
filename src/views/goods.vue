@@ -26,7 +26,7 @@
 			</el-form>
 		</div>
 
-		<div v-infinite-scroll="load" class="goodsBox">
+		<div class="goodsBox">
 			<el-row :gutter="30">
 				<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="3" v-for="item in goodsData" :key="item.Id">
 					<el-card class="product-card goods-card" shadow="hover" @click.native="goodsView(item.Id)">
@@ -40,6 +40,13 @@
 							</div>
 						</div>
 					</el-card>
+				</el-col>
+			</el-row>
+			<el-row class="mt30 turn-page">
+				<el-col :span="24">
+					<el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageIndex"
+					 :page-size="48" layout="total, prev, pager, next, jumper" :total="total">
+					</el-pagination>
 				</el-col>
 			</el-row>
 		</div>
@@ -56,9 +63,11 @@
 		name: 'goods',
 		data() {
 			return {
+				pageIndex: 1,
+				pageSize: 48,
+				total: 0,
 				goodsData: [],
 				typeData: [],
-				pageSize: 48,
 				searchForm: {
 					name: '',
 					type: '0'
@@ -84,6 +93,7 @@
 				}
 				goodsList(params).then(res => {
 					_this.goodsData = res.Entity
+					_this.total = Number(res.TotalCount)
 				}).catch((e) => {})
 			},
 
@@ -103,6 +113,20 @@
 						type: '0',
 					},
 					_this.getGoodsData()
+			},
+
+			//翻页
+			handleSizeChange(val) {
+				let _this = this
+				_this.pageSize = val
+				_this.getProductData()
+			},
+
+			//跳转
+			handleCurrentChange(val) {
+				let _this = this
+				_this.pageIndex = val
+				_this.getProductData()
 			},
 
 			// 获取商品类别
@@ -126,12 +150,6 @@
 						id: id
 					}
 				})
-			},
-
-			//滚动无限加载
-			load() {
-				this.pageSize += 24
-				this.getGoodsData()
 			}
 
 		}
@@ -149,9 +167,8 @@
 		vertical-align: middle !important
 	}
 
-	.goodsBox {
-		height: calc(100vh - 250px);
-		overflow-x: hidden;
-		overflow-y: auto;
+	.turn-page {
+		background: #FFFFFF;
+		padding: 5px;
 	}
 </style>
