@@ -9,7 +9,13 @@
 			</el-col>
 			<el-col :xs="24" :sm="14">
 				<div class="goodsViewTitle">{{goodsInfo.name}}</div>
-				<div class="goodsViewPrice warning text-line-x">{{goodsInfo.price}} {{goodsInfo.currency}}</div>
+				<div class="mt20">
+					<span class="fz20 info">Original price：</span>
+					<span class="goodsViewPrice info text-line-x">{{goodsInfo.price}}{{goodsInfo.currency}}</span>
+					<span class="fz20 info ml20">Activity price：</span>
+					<span class="goodsViewPrice warning">0{{goodsInfo.currency}}</span>
+					<span class="fz20 danger ml20">（Free）</span>
+				</div>
 				<div class="goodsViewDis" v-html="goodsInfo.description"></div>
 				<div class="contact" v-html="contact"></div>
 			</el-col>
@@ -135,7 +141,6 @@
 
 	.goodsViewPrice {
 		font-size: 30px;
-		font-weight: bold;
 		margin-top: 30px;
 	}
 

@@ -30,13 +30,19 @@
 			<el-row :gutter="30">
 				<el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="3" v-for="item in goodsData" :key="item.Id">
 					<el-card class="product-card goods-card" shadow="hover" @click.native="goodsView(item.Id)">
-						<img class="product-img" :src="item.ProductUrl">
+						<el-badge value="free" class="item mr15">
+							<img class="product-img" :src="item.ProductUrl">
+						</el-badge>
 						<div class="product-card-box">
 							<div class="goods-title">{{item.ProductName}}</div>
 							<div class="goods-dis" v-html="item.ProductDescribe"></div>
-							<div class="bottom">
-								<time class="time warning fz18 text-line-x">{{item.Price}} {{item.Currency}}</time>
-								<el-button type="text" class="button ml10">View details</el-button>
+							<div class="goods-bottom">
+								<div class="time info fz16 text-line-x">{{item.Price}}{{item.Currency}}</div>
+								<div class="time danger fz18">（free）</div>
+								<div class="time warning fz18">0{{item.Currency}} </div>
+							</div>
+							<div class="txt-c">
+								<el-button type="text" class="button">View details</el-button>
 							</div>
 						</div>
 					</el-card>
@@ -88,7 +94,7 @@
 					productTypeId: _this.searchForm.type,
 					Name: _this.searchForm.name,
 					State: 1,
-					pageIndex: 1,
+					pageIndex: _this.pageIndex,
 					pageSize: _this.pageSize
 				}
 				goodsList(params).then(res => {
@@ -119,14 +125,14 @@
 			handleSizeChange(val) {
 				let _this = this
 				_this.pageSize = val
-				_this.getProductData()
+				_this.getGoodsData()
 			},
 
 			//跳转
 			handleCurrentChange(val) {
 				let _this = this
 				_this.pageIndex = val
-				_this.getProductData()
+				_this.getGoodsData()
 			},
 
 			// 获取商品类别
